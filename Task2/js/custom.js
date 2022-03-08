@@ -50,7 +50,7 @@ function sec1( response) {
     const div = createmyownelement(newssection, "div", null, null) 
     const row = createmyownelement(div, "div", null, "row")
     response.forEach(element => {
-        const col = createmyownelement(row, "div", "col", "col-lg-3 col-md-6 border border-primary")
+        const col = createmyownelement(row, "div", "col", "col-lg-3 col-md-6 my-3 border border-primary")
         const coldiv = createmyownelement(col, "div", null, null)
         const p = createmyownelement(coldiv, "p",element["title"],null )
         const link = createmyownelement(coldiv, "a", "from web site", "text-danger")
@@ -64,17 +64,18 @@ function sec2(response) {
      console.log(2) 
     const tr = createmyownelement(tablebody, "tr", null, null)
     data = ["name", "email", "address", "company"]
-    let text=""
+    
     response.forEach(reselement => {
+        let text=""
         data.forEach((objelement) => {
-            if (objelement == "company")text += objelement+":"+reselement[objelement]["bs"]+"|||||||||||||"
+            if (objelement == "company")text += objelement+"[bs]"+":"+reselement[objelement]["bs"]+"|||||||||||||"
         
-            else if(objelement == "address")text += objelement+":"+reselement[objelement]["street"]+" ||||||||||||| "
+            else if (objelement == "address") text += objelement + "[street]"+":" + reselement[objelement]["street"] + " ||||||||||||| "
             else text += objelement+":"+reselement[objelement]+"|||||||||||||  "
         })
         const p = createmyownelement(tr, "p",text,null )
         console.log(reselement)
-        console.log(reselement.street.geo.lng)
+        // console.log(reselement.street.geo.lng)
 
 
     })
