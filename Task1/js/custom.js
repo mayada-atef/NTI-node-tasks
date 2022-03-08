@@ -34,9 +34,9 @@ deletefunc = (tabledata,index) => {
 editfunc = (tabledata,index) => {
    
 }
-makeevent= (link,index) => {
+makeevent= (link,index,type) => {
     
-    localStorage.setItem("showitem", index)
+    localStorage.setItem(type, index)
     window.open(link, '_blank')
 }
 
@@ -50,13 +50,13 @@ showrowdata = (rowdata,index,tabledata,tableBody) => {
         const editbtn=createmyownelement(tdbuttons, "button", "edit", "btn btn-warning me-2")
         const showbtn = createmyownelement(tdbuttons, "button", "show", "btn btn-primary me-2")
         deletebtn.addEventListener("click", () => { deletefunc(tabledata, index) })
-        editbtn.addEventListener("click",  () => {makeevent("showtableelement.html",index) })
-        showbtn.addEventListener("click", () => {makeevent("showtableelement.html",index) })
+        editbtn.addEventListener("click",  () => {makeevent("edit.html",index,"showitem") })
+        showbtn.addEventListener("click", () => {makeevent("showtableelement.html",index,"edititem") })
 }
 
 showtabledata = () => {
     tableBody.innerHTML = ""
-    tabledata = readfromlocaldstorage("customers")
+    const tabledata = readfromlocaldstorage("customers")
     tabledata.forEach((rowdata,index) => {
           showrowdata(rowdata,index,tabledata,tableBody)
     });
@@ -86,26 +86,30 @@ if (tableBody) showtabledata()
 const rowshow = document.querySelector("#rowshow")
 if (rowshow) {
     const tabledata = readfromlocaldstorage("customers") 
-    const itemindex = localStorage.getItem("showitem")
+    const itemindex = parseInt(localStorage.getItem("showitem"))
     const item=tabledata[itemindex]
     console.log(item)
     showrowdata(item,itemindex,tabledata,rowshow)
     
 }
-data.forEach((head) => {
-       
-    })
-    // showrowdata = (rowdata, index) => {
-    
-//     // const row = createmyownelement(showrow, "tr", "hi", null)
-//     // const row = createmyownelement(showrow, "tr", null, null)
-//     // createmyownelement(row, "td", index, null)
-//     // data.forEach(element => {
-//     //      console.log(rowdata[element])
-//     // });
-    
-//     console.log(rowdata)
-//     console.log("yes")
-  
+const editform = document.querySelector("#editform")
 
-// }
+if (editform) {
+   
+      const customers = readfromlocaldstorage("customers")
+    const itemindex = parseInt(localStorage.getItem("edititem"))
+    data.forEach(element => {
+        editform.elements[element].value=customers[itemindex][element]
+    })
+    editform.addEventListener("submit", function(e) {
+        e.preventDefault()
+        data.forEach(element => customers[itemindex][element] = e.target.elements[element].value)  
+        writedatatolocalstorage(customers, "customers")
+        this.reset()
+        window.location.href="index.html"
+    })
+    
+       
+}
+
+
