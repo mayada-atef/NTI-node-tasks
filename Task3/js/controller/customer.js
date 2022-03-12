@@ -5,7 +5,6 @@ const addcustomer = (customerdata) => {
     try {
         if (customerdata.name.length < 3) throw new Error("invalid name")
         const data = dealWithJSON.readdata()
-        // customerdata
         data.push(customerdata)
         console.log(data)
         dealWithJSON.writedata(data)
@@ -48,12 +47,12 @@ const addoperation = (obj) => {
 
     //     u.id==obj.id
     // })
-    // console.log(index)
+    // console.log(index) //-1
     // let index2 = findindex(customerdata, "id", obj.id)
-    // console.log(index2)
+    // console.log(index2) //-1
 
     // let remain = customerdata[4].remainigBalance //undefined  remainigBalance
-    // let remain = customerdata[4]
+    // let remain = customerdata[4] 
     // console.log(remain)  //undefined
 
 ///////////////////node index.js  addop --id=1647116301504 --optype="withdraw" --value=7000
@@ -71,7 +70,7 @@ const addoperation = (obj) => {
         console.log(chalk.blue("add balance  " +remain))
         
     }
-    // customerdata[j].remainigBalance = remain
+    // customerdata[j].remainigBalance = remain  //undefind  remainigBalance
     operationobj = {
         opType: obj.optype,
         val: obj.value,
@@ -79,8 +78,8 @@ const addoperation = (obj) => {
     }
     console.log(operationobj)
 
-     console.log(obj)
-    // customerdata[j]["operations"].push(operationobj)
+    console.log(obj)
+    // customerdata[j]["operations"].push(operationobj)  
     // dealWithJSON.writedata(customerdata)
     // console.log(dealWithJSON.readdata()) 
 }
@@ -88,7 +87,7 @@ const addoperation = (obj) => {
 ////////////////////node index.js showcustomer --id=1647116301504 
 const showcustomer = (id) => {
     const customerdata = dealWithJSON.readdata()
-    // let index = findindex(customerdata, "accNum", accnum)
+    // let index = findindex(customerdata, "accNum", accnum) //index=-1
     let j = 0
     
     customerdata.forEach(e => {
