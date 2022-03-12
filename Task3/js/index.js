@@ -8,8 +8,8 @@ yargs.command({
     describe: "add new customer",
     builder: {
         name: {
-            type: "string",
-            required:true
+            // type:string,
+            // required:true
         }, 
        
         intialBalance: { default:1000},
@@ -19,13 +19,14 @@ yargs.command({
         }
     },
     handler: function (argv) {
-         console.log("sum")
+         console.log("test add customer")
         let customerdata = {
             name: argv.name,
             accNum:Math.floor(Math.random() * 1e6),
             intialBalance: argv.intialBalance,
             remainigBalance: argv.remainigBalance,
-            operations:argv.operations
+            operations: argv.operations,
+            id:Date.now()  
         }
          
          Customer.addcustomer(customerdata)
@@ -37,8 +38,11 @@ yargs.command({
     command:"addop",
     describe: "add new operation",
     builder: {
-        accNum: {
-            // required:true
+        // accNum: {
+        //     // required:true
+        // },
+          id:{
+
         },
         optype: {
             type: String,
@@ -48,10 +52,12 @@ yargs.command({
             // type: Number,
             // required:true
         },
+      
     },
     handler: function (argv) {
         let opdata = {
-            accNum:argv.accNum,
+            // accNum:argv.accNum,
+            id:argv.id,
             optype:argv.optype,
             value:argv.value,
             date:Date.now()    
