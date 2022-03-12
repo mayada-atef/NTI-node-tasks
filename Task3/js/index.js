@@ -1,0 +1,107 @@
+const Customer = require("./controller/customer")
+const yargs = require("yargs")
+
+
+
+yargs.command({
+    command:"addcustomer",
+    describe: "add new customer",
+    builder: {
+        name: {
+            type: "string",
+            required:true
+        }, 
+       
+        intialBalance: { default:1000},
+        remainigBalance: { default: 1000 },
+        operations: {
+            default:[]
+        }
+    },
+    handler: function (argv) {
+         console.log("sum")
+        let customerdata = {
+            name: argv.name,
+            accNum:Math.floor(Math.random() * 1e6),
+            intialBalance: argv.intialBalance,
+            remainigBalance: argv.remainigBalance,
+            operations:argv.operations
+        }
+         
+         Customer.addcustomer(customerdata)
+        
+    }
+    
+})
+yargs.command({
+    command:"addop",
+    describe: "add new operation",
+    builder: {
+        accNum: {
+            // required:true
+        },
+        optype: {
+            type: String,
+            // required:true
+        },
+        value:{
+            // type: Number,
+            // required:true
+        },
+    },
+    handler: function (argv) {
+        let opdata = {
+            accNum:argv.accNum,
+            optype:argv.optype,
+            value:argv.value,
+            date:Date.now()    
+        }
+        Customer.addoperation(opdata)
+        
+    }
+    
+})
+yargs.command({
+    command:"show customer",
+    describe: "show customer operation",
+
+    handler: function () {
+         
+         Customer.showcustomer(customeraccnum)
+        
+    }
+    
+})
+yargs.argv
+// yargs.command({
+//     command:"show customers",
+//     describe: "show all customers",
+//     handler: function () {
+//          Customer.showall
+        
+//     }
+    
+// })
+
+
+
+// cutomers => name, accNum, intialBalance, remainigBalance, 
+//     operations: [{ opType: "with", val: 100, at: "date" }]
+
+// on yargs 
+// add customer => {
+//     accNum:1,
+//     name:"marwa",
+//     intialBalance:1000,
+//     remainigBalance:1000,
+//     operations:[]
+// }
+// => add Customer 
+// => add operation => builder => opType, opValue
+// if withdraw remainigBalance> opValue
+// else add  opValue<6000
+// => show user
+// name- ....
+// operation
+// - val: 100   type:add   time:-----
+// - val:200    type:with   time:----
