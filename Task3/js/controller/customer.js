@@ -19,14 +19,12 @@ const addcustomer = (customerdata) => {
 //    const i = customerdata.findIndex(u => { u[key] == val })
 //     return i
 // }
-const addoperation = (id, type, value, date) => {
+const addoperation = (accNum, type, value, date) => {
     console.log("test")
     const customerdata = dealWithJSON.readdata()
     console.log(customerdata)
-    
-    const index = customerdata.findIndex(u=> u.accNumr==id)
-    // let index = customerdata.findIndex(u=> u.accNum==accnum)
-    // let index = findindex(customerdata, "accNum", accnum)
+    const index = customerdata.findIndex(u=> u.accNumr==accNum)
+    // let index = findindex(customerdata, "accNum", accNum)
     console.log(index)
     // let remain = customerdata[index]["remainigBalance"]
     
