@@ -1,5 +1,6 @@
 const Customer = require("./controller/customer")
 const yargs = require("yargs")
+const { argv } = require("yargs")
 
 
 
@@ -70,10 +71,13 @@ yargs.command({
 yargs.command({
     command:"show customer",
     describe: "show customer operation",
-
+    builder: {
+        accnum :{ }
+             
+    }
+   ,
     handler: function () {
-         
-         Customer.showcustomer(customeraccnum)
+         Customer.showcustomer(argv.accnum)
         
     }
     

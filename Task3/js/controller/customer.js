@@ -15,10 +15,10 @@ const addcustomer = (customerdata) => {
         console.log(chalk.red(error.message))
     }
 }
-// const findindex = (customerdata, key, val) => {
-//    const i = customerdata.findIndex(u => { u[key] == val })
-//     return i
-// }
+const findindex = (customerdata, key, val) => {
+   const i = customerdata.findIndex(u => { u[key] == val })
+    return i
+}
 // (id, type, value, date)
 const addoperation = (obj) => { 
     const customerdata = dealWithJSON.readdata()
@@ -34,26 +34,26 @@ const addoperation = (obj) => {
 
         u.id==obj.id
     })
-   
-    // let index = findindex(customerdata, "accNum", accNum)
     console.log(index)
+    let index2 = findindex(customerdata, "id", obj.id)
+    console.log(index2)
     // let remain = customerdata[index]["remainigBalance"]
     
-    // if (type == "withdraw") {
-    //     if (remain < value) return console.log("balance is not enough")
+    // if (obj.type == "withdraw") {
+    //     if (remain < obj.value) return console.log("balance is not enough")
     //     else remain=remain-value
         
     // }
-    // else if (type == "add") {
-    //     if (value > 6000) return console.log("value must be less than 6000")
+    // else if (obj.type == "add") {
+    //     if (obj.value > 6000) return console.log("value must be less than 6000")
     //     else remain=remain+value
         
     // }
     // customerdata[index]["remainigBalance"] = remain
     // operationobj = {
-    //     opType: type,
-    //     val: value,
-    //     at: date
+    //     opType: obj.type,
+    //     val: obj.value,
+    //     at: obj.date
     // }
     // customerdata[index]["operations"].push(operationobj)
     // dealWithJSON.writedata(customerdata)
