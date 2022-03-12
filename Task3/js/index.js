@@ -56,7 +56,7 @@ yargs.command({
       
     },
     handler: function (argv) {
-        let opdata = {
+        let opadata = {
             // accNum:argv.accNum,
             id:argv.id,
             optype:argv.optype,
@@ -69,15 +69,15 @@ yargs.command({
     
 })
 yargs.command({
-    command:"show customer",
+    command:"showcustomer",
     describe: "show customer operation",
     builder: {
-        accnum :{ }
+        id:{}
              
     }
    ,
     handler: function () {
-         Customer.showcustomer(argv.accnum)
+         Customer.showcustomer(argv.id)
         
     }
     
