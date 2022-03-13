@@ -56,7 +56,7 @@ yargs.command({
       
     },
     handler: function (argv) {
-        let opadata = {
+        let opdata = {
             // accNum:argv.accNum,
             id:argv.id,
             optype:argv.optype,
