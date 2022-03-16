@@ -1,0 +1,46 @@
+{{>header}}
+{{>nav}}
+
+<section class="container">
+    <table class="table table-bordered">
+        <thead>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>AccNum</th>
+            <th>intialBalance</th>
+            <th>remainBalance</th>
+            <th>ACTIONS</th>
+        </thead>
+        <tbody>
+
+            {{#if isEmpty}}
+            <tr class="alert alert-danger">
+                <td colspan="12" class="text-center">No Customers yet</td>
+            </tr>
+            {{else}}
+            {{#each customers}}
+            <tr>
+                <td>{{this.id}}</td>
+                <td>{{this.name}}</td>
+                <td>{{this.accNum}}</td>
+                <td>{{this.intialBalance}}</td>
+                <td>{{this.remainBalance}}</td>
+                <td>
+                    <a href="/showcustomer/{{this.accNum}}" class="btn btn-primary">show Customer</a>
+                    {{!-- <a href="/edit/{{this.id}}" class="btn btn-warning">edit</a>
+                    <a href="/delete/{{this.id}}" class="btn btn-danger">delete</a> --}}
+                    <a href="/addoperation/{{this.accNum}}" class="btn btn-dark">add Operation</a>
+                </td>
+            </tr>
+            {{/each}}
+            {{/if}}
+
+
+
+        </tbody>
+
+    </table>
+</section>
+
+{{>footer}}
+{{>footer}}
