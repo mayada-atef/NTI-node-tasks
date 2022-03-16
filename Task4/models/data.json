@@ -1,1 +1,1 @@
-[{"id":1647421108811,"accNum":1647421108811,"name":"h","intialBalance":"j","remainBalance":"gh"},{"id":1647422034520,"accNum":1647422034520,"name":"new","intialBalance":"1000","remainBalance":1700}]
+[{"id":1647465055622,"accNum":1647465055622,"name":"new","intialBalance":"1000","remainBalance":6000,"operations":[{"type":"add","value":"5000","at":"2022-03-16T21:12:21.103Z"}]}]

@@ -13,10 +13,18 @@
             <h3>Name: {{customer.name}}</h3>
             <h3>intialBalance: {{customer.intialBalance}}</h3>
             <h3>remainBalance: {{customer.remainBalance}}</h3>
-            <h3>operations: {{customer.operations}}</h3>
-            {{!-- {{#each customer.operations}}
-            <h3>operations: {{customer.operations}}</h3>
-            {{/each}} --}}
+            {{!-- <h3>operations: {{...customer.operations}}</h3> --}}
+
+            {{#each customer.operations}}
+            <h3>operations:&nbsp;&nbsp;
+                <br>
+                type: {{customer.operations.type}}<br>
+                value: {{customer.operations.value}}<br>
+                at: {{customer.operations.at}}<br>
+            </h3>
+            <hr>
+
+            {{/each}}
 
         </div>
         {{/if}}

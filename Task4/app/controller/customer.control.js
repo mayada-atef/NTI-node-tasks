@@ -66,20 +66,21 @@ const addoperation = (req, res) => {
     deal.writeData(allCustomers)
     res.redirect("/")
     }
-     res.render("addoperation",{pagetitle:"add operation",message})
+     res.render("addoperation",{pagetitle:"add operation"})
 }
 
   
 
 const showCustomer = (req, res) => {
+    const accNum = req.params.accNum
     let allCustomers = deal.readData()
     let customer = allCustomers.find(u => u.accNum == accNum)
-    res.render("showAll", {
-        pagetitle: "show All",
+    console.log(...customer.operations)
+    res.render("showcustomer", {
+        pagetitle: "show customer",
         customer,
         isEmpty: customer? false:true
 
     })
-
  }
 module.exports={addcustomer,addoperation,showAllcustomer,showCustomer}
