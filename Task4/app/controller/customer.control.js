@@ -14,56 +14,58 @@ const addcustomer = (req, res) => {
         accNum: Date.now(),
         name: req.query.name,
         intialBalance:req.query.intialBalance,
-        remainBalance:req.query.remainBalance   
-       }
-    if (req.query.name && req.query.intialBalance&&req.query.remainBalance) {
+        remainBalance: req.query.remainBalance,
+        operations:[]
+        
+    }
+    console.log(req.query)
+    if (req.query.name && req.query.intialBalance && req.query.remainBalance) {
         let customers = deal.readData()
         customers.push(customer)
         deal.writeData(customers)
+        console.log('test')
         res.redirect("/")
 
     }
-    res.render("/addcustomer", {
-      pagetitle:"add customer",message
+    res.render("addcustomer", {
+      pagetitle:"add customer"
     })
 }
 
 const addoperation = (req, res) => {
-    const accNum = req.params.accNum
-    let allCustomers = deal.readData()
-    let message=""
+    const accNum = req.params.accNum //1
+    let allCustomers = deal.readData() //[1,2,3]
+    var message=""//""
     // let customer = allCustomers.find(u => u.accNum == accNum)
     if (req.query.addop) {
-        let index = allUsers.findIndex(u => u.accNum == accNum)
-        
+        let index = allCustomers.findIndex(u => u.accNum == accNum)        
          if (req.query.optype == "withdraw") {
-             if (allCustomers[index].remainBalance < req.query.opvalue) { message = "balance is not enough" }
-        else allCustomers[index].remainBalance = allCustomers[index].remainBalance - req.query.opvalue
+             if (Number(allCustomers[index].remainBalance) < req.query.opvalue) {
+                 message = "balance is not enough"
+                 res.render("addoperation",{pagetitle:"add operation",message})
+             }
+             
+        else allCustomers[index].remainBalance = Number(allCustomers[index].remainBalance) -Number(req.query.opvalue)
         
     }
     else if (req.query.optype == "add") {
-        if (req.query.opvalue> 6000){message="value must be less than 6000"} 
-        else allCustomers[index].remainBalance = allCustomers[index].remainBalance +req.query.opvalue
+             if (Number(req.query.opvalue > 6000)) {
+                  message = "value must be less than 6000" 
+                 res.render("addoperation", { pagetitle: "add operation", message })
+             }
+        else allCustomers[index].remainBalance = Number(allCustomers[index].remainBalance) +Number(req.query.opvalue)
        
         
-    }
-        let newcustomer = {
-        id:allCustomers[index].id,
-        accNum: accNum,
-        name: allCustomers[index].name,              //customer.name,
-        intialBalance:allCustomers[index].intialBalance,
-        remainBalance:allCustomers[index].remainBalance,
-        operations:[{
-           type: req.query.optype,
-            value: req.query.opvalue,
-            at: new Date()  }]
-            
         }
-        allCustomers[index]= newcustomer
-        deal.writeData(allCustomers)
-        res.redirect("/")
+    let operation={ type: req.query.optype,
+            value: req.query.opvalue,
+            at: new Date()
+        }
+    allCustomers[index].operations.push(operation)
+    deal.writeData(allCustomers)
+    res.redirect("/")
     }
-     res.render("/addoperation",{pagetitle:"add operation",message})
+     res.render("addoperation",{pagetitle:"add operation",message})
 }
 
   
