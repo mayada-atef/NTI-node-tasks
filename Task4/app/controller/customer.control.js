@@ -35,8 +35,9 @@ const addcustomer = (req, res) => {
 const addoperation = (req, res) => {
     const accNum = req.params.accNum //1
     let allCustomers = deal.readData() //[1,2,3]
-    var message=""//""
-    // let customer = allCustomers.find(u => u.accNum == accNum)
+    var message = ""
+    // var message=""//""
+
     if (req.query.addop) {
         let index = allCustomers.findIndex(u => u.accNum == accNum)        
          if (req.query.optype == "withdraw") {
@@ -70,5 +71,15 @@ const addoperation = (req, res) => {
 
   
 
-const showCustomer = (req, res) => { }
+const showCustomer = (req, res) => {
+    let allCustomers = deal.readData()
+    let customer = allCustomers.find(u => u.accNum == accNum)
+    res.render("showAll", {
+        pagetitle: "show All",
+        customer,
+        isEmpty: customer? false:true
+
+    })
+
+ }
 module.exports={addcustomer,addoperation,showAllcustomer,showCustomer}
