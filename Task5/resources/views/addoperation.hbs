@@ -1,0 +1,15 @@
+{{>header}}
+<section class="container my-3">
+    {{!-- {{#if message=="" }} --}}
+    <form>
+        <input placeholder="operation type" name="optype" value="{{customer.optype}}" class="form-control mb-3">
+        <input placeholder="operation value" name="opvalue" value="{{customer.opvalue}}" class="form-control mb-3">
+
+        <button class="form-control btn-primary mb-3" value="addop" name="addop">add operation </button>
+    </form>
+    {{!-- {{else}}
+    <div class="alert alert-danger">
+        {{message}}
+    </div> --}}
+</section>
+{{>footer}}

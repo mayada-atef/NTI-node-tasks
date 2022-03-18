@@ -1,0 +1,33 @@
+{{>header}}
+{{>nav}}
+<section class="my-5 container">
+    <div class="row mb-3 justifiy-content-end">
+        {{#if isEmpty}}
+        <div class="alert alert-danger">
+            {{!-- Invalid acount number --}}
+            no customer yet
+        </div>
+        {{else}}
+        <div class="border border-primary border-4 p-4 m-4">
+            <h3>AccNum: {{customer.accNum}}</h3>
+            <h3>Name: {{customer.name}}</h3>
+            <h3>intialBalance: {{customer.intialBalance}}</h3>
+            <h3>remainBalance: {{customer.remainBalance}}</h3>
+            {{!-- <h3>operations: {{...customer.operations}}</h3> --}}
+
+            {{#each customer.operations}}
+            <h3>operations:&nbsp;&nbsp;
+                <br>
+                type: {{this.type}}<br>
+                value: {{this.value}}<br>
+                at: {{this.at}}<br>
+            </h3>
+            <hr>
+
+            {{/each}}
+
+        </div>
+        {{/if}}
+    </div>
+</section>
+{{>footer}}
