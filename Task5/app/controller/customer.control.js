@@ -83,6 +83,7 @@ const addoperation=(req,res) => {
                         // console.log("balance", balance, Date.now)
                         customers[index].remainBalance = balance 
                         customersdata = customers
+                               
                         // console.log(customersdata)
                         // console.log(customers[index].remainBalance)
                         // connection.collection("customers").insertOne(customers,
@@ -99,6 +100,7 @@ const addoperation=(req,res) => {
                    
                 })
          })
+         res.redirect("/")
     //     db((err, connection) => {
     //      console.log(customersdata[0]._id)             
     //     connection.collection("customers").insertOne(customersdata,
@@ -107,9 +109,8 @@ const addoperation=(req,res) => {
     //         })
     // })
     }
-            // console.log(customersdata[0]._id)
+    // console.log(customersdata[0]._id)
     // db((err, connection) => {
-    //                     
     //     connection.collection("customers").insertOne(customersdata,
     //     (e, result) => {
     //         if (e) res.send(e)
@@ -165,16 +166,18 @@ const addoperation=(req,res) => {
   
 
 const showCustomer = (req, res) => {
-    // const accNum = req.params.accNum
-    // // console.log(accNum)
-    // let allCustomers = deal.readData()
-    // let customer = allCustomers.find(u => u.accNum == accNum)
-  
-    // res.render("showcustomer", {
-    //     pagetitle: "show customer",
-    //     customer,
-    //     isEmpty: customer? false:true
+    const accNum = req.params.accNum
+     db((err, connection) => {
+        connection.collection("customers").find().toArray((e,customers) => {
+            if (e) res.send(e)
+            let customer = customers.find(u => u.accNum == accNum)
+            res.render("showcustomer", {
+            pagetitle: "show customer",
+            customer,
+            isEmpty: customer? false:true
+            })
 
-    // })
+        })
+    })
  }
 module.exports={addcustomer,addLogic,addoperation,showAllcustomer,showCustomer}
